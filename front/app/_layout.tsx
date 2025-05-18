@@ -67,7 +67,10 @@ function DrawerContent() {
           </Drawer.Protected>
 
           <Drawer.Protected guard={tipoUsuario === 'pj'}>
-            <Drawer.Screen name="pj/home/index" options={{ title: 'Home PJ' }} />
+            <Drawer.Screen name="pj/home/index" options={{ title: 'Atendimentos' }} />
+            <Drawer.Screen name="pj/servicosOferecidos/index" options={{ title: 'Serviços' }} />
+            <Drawer.Screen name="pj/historico/index" options={{ title: 'Histórico' }} />
+
           </Drawer.Protected>
         </Drawer.Protected>
 

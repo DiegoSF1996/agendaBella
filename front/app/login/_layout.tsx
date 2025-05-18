@@ -15,8 +15,8 @@ export default function LoginScreen() {
       return;
     }
 
-    login(email,'pf');
-    router.replace('/pf/home');
+    login(email,'pj');
+    router.replace('/pj/home');
   };
 
   return (
