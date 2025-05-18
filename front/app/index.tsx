@@ -1,5 +1,16 @@
 import { View, Text } from 'react-native';
 import { Link } from 'expo-router';
+import { useAuth } from '@/context/AuthContext';
+import LoginScreen from './login/_layout';
 export default function Index() {
-    return <Link href="/login">Navigate to nested route</Link>;
+    const { isLoggedIn } = useAuth();
+    return (
+        <>
+            {!isLoggedIn && (
+                <>
+                    <LoginScreen/>
+                </>
+            )}
+        </>
+    )
 }

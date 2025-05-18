@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Platform } from 'react-native';
+import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../context/AuthContext';
 
@@ -113,12 +113,13 @@ export default function RegisterScreen() {
         // Tudo válido
         login(nomeUsuario);
         console.log('Sucesso Cadastro realizado com sucesso!');
-        router.replace('/home');
+        router.replace('/login');
     };
 
 
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
+
             <Text style={styles.title}>Cadastro</Text>
 
             {/* Radio para selecionar tipo */}
@@ -220,10 +221,50 @@ export default function RegisterScreen() {
             />
             {errors.senha ? <Text style={styles.error}>{errors.senha}</Text> : null}
 
+            <TextInput
+                style={styles.input}
+                placeholder="Logradouro"
+                value={nomeUsuario}
+                onChangeText={text => {
+                    setNomeUsuario(text);
+                    setErrors(prev => ({ ...prev, nomeUsuario: '' }));
+                }}
+                autoCapitalize="none"
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Número"
+                value={nomeUsuario}
+                onChangeText={text => {
+                    setNomeUsuario(text);
+                    setErrors(prev => ({ ...prev, nomeUsuario: '' }));
+                }}
+                autoCapitalize="none"
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Complemento"
+                value={nomeUsuario}
+                onChangeText={text => {
+                    setNomeUsuario(text);
+                    setErrors(prev => ({ ...prev, nomeUsuario: '' }));
+                }}
+                autoCapitalize="none"
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="CEP"
+                value={nomeUsuario}
+                onChangeText={text => {
+                    setNomeUsuario(text);
+                    setErrors(prev => ({ ...prev, nomeUsuario: '' }));
+                }}
+                keyboardType="numeric"
+            />
             <TouchableOpacity style={styles.button} onPress={handleRegister}>
                 <Text style={styles.buttonText}>Cadastrar</Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 }
 
