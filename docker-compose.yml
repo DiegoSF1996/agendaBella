@@ -1,16 +1,28 @@
 version: '3.8'
 
 services:
-  app:
-    container_name: app-expo
-    build: ./front
+  back:
+    container_name: app-back
+    build: ./back
     ports:
-      - "9000:9000"
+      - "9002:80"
     volumes:
-      - ./front:/app
-      - /app/node_modules 
+      - ./back:/agendaBella 
     networks:
       - app-network
+  #front:
+  #  build:
+  #    context: ./front
+  #    dockerfile: Dockerfile
+  #  ports:
+  #    - "9001:8081"       # Web
+  #    - "19000:19000"     # Expo dev
+  #    - "19001:19001"     # Metro bundler websocket
+  #    - "19002:19002"     # Expo dev tools (browser)
+  #  volumes:
+  #    - ./front:/agendaBella
+  #  networks:
+  #    - app-network
  
 networks:
   app-network:
