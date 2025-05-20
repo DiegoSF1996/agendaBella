@@ -1,0 +1,121 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\{{modelName}};
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+
+class {{modelName}}Test extends TestCase
+{
+    protected $endpoint = '/api/{{modelNamePluralLowerCase}}';
+   /**
+     * Get All {{modelNamePluralLowerCase}}
+     *
+     * @return void
+     */
+    public function test_get_all_{{modelNamePluralLowerCase}}()
+    {
+        {{modelName}}::factory()->count(6)->create();
+
+        $response = $this->getJson($this->endpoint);
+
+        $response->assertJsonCount(6, 'data');
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Error Get Single {{modelName}}
+     *
+     * @return void
+     */
+    public function test_error_get_single_{{modelnamesingularlowercase}}()
+    {
+        ${{modelnamesingularlowercase}} = 'fake-url';
+
+        $response = $this->getJson("{$this->endpoint}/{${{modelnamesingularlowercase}}}");
+
+        $response->assertStatus(404);
+    }
+
+    /**
+     * Get Single {{modelName}}
+     *
+     * @return void
+     */
+    public function test_get_single_{{modelnamesingularlowercase}}()
+    {
+        ${{modelnamesingularlowercase}} = {{modelName}}::factory()->create();
+
+        $response = $this->getJson("{$this->endpoint}/{${{modelnamesingularlowercase}}->uuid}");
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Validation Store {{modelName}}
+     *
+     * @return void
+     */
+    public function test_validations_store_{{modelnamesingularlowercase}}()
+    {
+        $response = $this->postJson($this->endpoint, [{{arrayfields}}
+        ]);
+
+        $response->assertStatus(422);
+    }
+
+    /**
+     * Store {{modelName}}
+     *
+     * @return void
+     */
+    public function test_store_{{modelnamesingularlowercase}}()
+    {
+        $response = $this->postJson($this->endpoint, [{{arrayfields}}
+        ]);
+
+        $response->assertStatus(201);
+    }
+
+    /**
+     * Update {{modelName}}
+     *
+     * @return void
+     */
+    public function test_update_{{modelnamesingularlowercase}}()
+    {
+        ${{modelnamesingularlowercase}} = {{modelName}}::factory()->create();
+
+        $data = [{{arrayfields}}
+        ];
+
+        $response = $this->putJson("$this->endpoint/fake-{{modelnamesingularlowercase}}", $data);
+        $response->assertStatus(404);
+
+        $response = $this->putJson("$this->endpoint/{${{modelnamesingularlowercase}}->uuid}", []);
+        $response->assertStatus(422);
+
+        $response = $this->putJson("$this->endpoint/{${{modelnamesingularlowercase}}->uuid}", $data);
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Delete {{modelName}}
+     *
+     * @return void
+     */
+    public function test_delete_{{modelnamesingularlowercase}}()
+    {
+        ${{modelnamesingularlowercase}} = {{modelName}}::factory()->create();
+
+        $response = $this->deleteJson("{$this->endpoint}/fake-{{modelnamesingularlowercase}}");
+        $response->assertStatus(404);
+
+        $response = $this->deleteJson("{$this->endpoint}/{${{modelnamesingularlowercase}}->uuid}");
+        $response->assertStatus(204);
+    }
+
+}

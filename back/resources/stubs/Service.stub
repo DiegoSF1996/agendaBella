@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Services;
+
+use App\Repositories\{{modelName}}Repository;
+
+class {{modelName}}Service
+{
+
+    protected ${{modelNameSingularLowerCase}}_repository;
+
+    public function __construct({{modelName}}Repository ${{modelNameSingularLowerCase}}_repository){
+        $this->{{modelNameSingularLowerCase}}_repository = ${{modelNameSingularLowerCase}}_repository;
+    }
+
+    public function index(array $filtros = [], $limit = 0, $per_page = 0)
+    {
+        return $this->{{modelNameSingularLowerCase}}_repository->index($filtros, $limit, $per_page);
+    }
+
+    public function store($request)
+    {
+        return $this->{{modelNameSingularLowerCase}}_repository->store($request);
+    }
+
+    public function show($id)
+    {
+        $data = $this->{{modelNameSingularLowerCase}}_repository->show($id);
+        if (!$data) {
+            throw new \Exception('Dados não encontrados');
+        }
+        return $data;
+    }
+
+    public function update($request, $id)
+    {
+        $data = $this->{{modelNameSingularLowerCase}}_repository->show($id);
+        if (!$data) {
+            throw new \Exception('Dados não encontrados');
+        }
+        return $this->{{modelNameSingularLowerCase}}_repository->update($request->toArray(), $data);
+    }
+
+    public function destroy($id)
+    {
+        $data = $this->{{modelNameSingularLowerCase}}_repository->show($id);
+        if (!$data) {
+            throw new \Exception('Dados não encontrados');
+        }
+        $this->{{modelNameSingularLowerCase}}_repository->destroy($data);
+    }
+
+}
