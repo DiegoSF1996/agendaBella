@@ -2,16 +2,16 @@ version: '3.8'
 
 services:
   back:
-    container_name: app-back
+    container_name: app_back
     build: ./back
     ports:
       - "9002:80"
     volumes:
-      - ./back:/usr/src/agendaBellals
+      - ./back:/usr/src/agendaBella
     networks:
-      - app-network
+      - app_network
   database:
-    container_name: app-database
+    container_name: app_database
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     networks:
-      - app-network
+      - app_network
   #front:
   #  build:
   #    context: ./front
@@ -39,5 +39,5 @@ services:
   #    - app-network
  
 networks:
-  app-network:
+  app_network:
     driver: bridge

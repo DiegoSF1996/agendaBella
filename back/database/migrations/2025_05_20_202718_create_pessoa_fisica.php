@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pessoa_fisica', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->foreingId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('cpf')->max(11)->unique();
             $table->date('data_nascimento');
             $table->string('telefone');

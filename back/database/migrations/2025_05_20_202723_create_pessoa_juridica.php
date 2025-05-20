@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pessoa_juridica', function (Blueprint $table) {
             $table->id();
             $table->string('nome_fantasia');
-            $table->foreingId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('cnpj')->max(14)->unique();
             $table->string('telefone');
             $table->string('email');

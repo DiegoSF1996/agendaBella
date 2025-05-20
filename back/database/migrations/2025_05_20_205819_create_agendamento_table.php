@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('agendamento', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pessoa_fisica_id')->constrained('pessoa_fisica')->onDelete('cascade');
-            $table->foreignId('pessoa_juridica_id')->constrained('pessoa_juridica')->onDelete('cascade');
-            $table->foreignId('servico_id')->constrained('servico')->onDelete('cascade');
+            $table->foreignId('pessoa_fisica_id')->constrained('pessoa_fisica');
+            $table->foreignId('pessoa_juridica_id')->constrained('pessoa_juridica');
+            $table->foreignId('servico_id')->constrained('servico');
             $table->dateTime('data_hora_agendamento');
             $table->dateTime('data_hora_conclusao');
-            $table->foreignId('status_agendamento_id')->constrained('status_agendamento')->onDelete('cascade');
+            $table->foreignId('status_agendamento_id')->constrained('status_agendamento');
             $table->string('observacao')->max(255)->nullable();
             $table->timestamps();
         });
