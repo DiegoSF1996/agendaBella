@@ -15,6 +15,9 @@ class CheckAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
+        /* if ($request->headers->get('api_key',null) !== env('API_KEY')) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        } */
         return $next($request);
     }
 }
