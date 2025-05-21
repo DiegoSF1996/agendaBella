@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->string('cnpj')->max(14)->unique();
             $table->string('telefone');
-            $table->string('email');
             $table->timestamps();
         });
     }

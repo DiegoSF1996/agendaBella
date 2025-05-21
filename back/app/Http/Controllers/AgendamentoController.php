@@ -40,7 +40,7 @@ class AgendamentoController extends Controller
     * description="agendamentos cadastro",
     *     @OA\RequestBody(
     *        @OA\JsonContent(
-    *          
+    *
 		*	@OA\Property(property="pessoa_fisica_id"),
 		*	@OA\Property(property="pessoa_juridica_id"),
 		*	@OA\Property(property="servico_id"),
@@ -100,7 +100,7 @@ class AgendamentoController extends Controller
      *     ),
      *     @OA\RequestBody(
      *        @OA\JsonContent(
-     *          
+     *
 		*	@OA\Property(property="pessoa_fisica_id"),
 		*	@OA\Property(property="pessoa_juridica_id"),
 		*	@OA\Property(property="servico_id"),
@@ -153,4 +153,21 @@ class AgendamentoController extends Controller
         }
     }
 
+    public function gerarAgendaServicoMensal(Request $request)
+    {
+        try {
+            $request->validate([
+                'pessoa_juridica_servico_id' => 'required|integer|exists:pessoa_juridica_servico,id',
+                'data_base' => 'required|date_format:Y-m-d',
+            ],[
+                'pessoa_juridica_servico_id.required' => 'O campo pessoa_juridica_servico_id é obrigatório',
+                'pessoa_juridica_servico_id.integer' => 'O campo pessoa_juridica_servico_id deve ser um número inteiro',
+                'pessoa_juridica_servico_id.exists' => 'O campo pessoa_juridica_servico_id não existe na tabela pessoa_juridica_servico',
+            ]);
+            $data_base = \DateTime::createFromFormat('Y-m-d', $request->get('data_base'));
+            return $this->agendamento_service->gerarAgendaServicoMensal($data_base, $request->get('pessoa_juridica_servico_id'));
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['message'=> 'Erro de validação', 'errors' => $e->errors()], \Illuminate\Http\Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    }
 }

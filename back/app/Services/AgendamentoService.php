@@ -49,5 +49,9 @@ class AgendamentoService
         }
         $this->agendamento_repository->destroy($data);
     }
+    public function gerarAgendaServicoMensal(\DateTime $data_base, int $pessoa_juridica_servico_id)
+    {
+        return $this->agendamento_repository->gerarAgendaServicoMensal($data_base, $pessoa_juridica_servico_id);
+    }
 
 }

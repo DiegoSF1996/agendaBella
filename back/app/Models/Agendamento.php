@@ -12,5 +12,12 @@ class Agendamento extends Model
     protected $table = 'agendamento';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    protected $fillable = ["pessoa_fisica_id", "pessoa_juridica_id", "servico_id", "data_hora_agendamento", "data_hora_conclusao", "status_agendamento_id", "observacao"];
+    protected $fillable = [
+        "pessoa_fisica_id",
+        "servico_horario_id",
+        "data_hora_agendamento",
+        "data_hora_conclusao",
+        "status_agendamento_id",
+        "observacao"
+    ];
 }
