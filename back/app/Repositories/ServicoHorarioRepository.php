@@ -16,7 +16,7 @@ class ServicoHorarioRepository
 
     public function index (array $filtros = [], $limit = 0, $per_page = 0)
     {
-        $query = $this->servico_horario;
+        $query = $this->servico_horario->withCount(['agendamento']);
         if (!empty($filtros)) {
             $query = $query->where($filtros);
         }

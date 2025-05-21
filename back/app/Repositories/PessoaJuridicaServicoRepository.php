@@ -23,8 +23,8 @@ class PessoaJuridicaServicoRepository
                 'pessoa_juridica_servico.pessoa_juridica_id',
                 'pessoa_juridica_servico.servico_id',
                 'pessoa_juridica.nome_fantasia as pessoa_juridica_nome_fantasia',
-                'servico.nome as servico_nome'
             ])
+            ->withCount(['agendamento'])
             ->join('pessoa_juridica', 'pessoa_juridica_servico.pessoa_juridica_id', '=', 'pessoa_juridica.id')
             ->leftJoin('servico', 'pessoa_juridica_servico.servico_id', '=', 'servico.id');
         if (!empty($filtros)) {
