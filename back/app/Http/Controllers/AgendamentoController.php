@@ -163,6 +163,8 @@ class AgendamentoController extends Controller
                 'pessoa_juridica_servico_id.required' => 'O campo pessoa_juridica_servico_id é obrigatório',
                 'pessoa_juridica_servico_id.integer' => 'O campo pessoa_juridica_servico_id deve ser um número inteiro',
                 'pessoa_juridica_servico_id.exists' => 'O campo pessoa_juridica_servico_id não existe na tabela pessoa_juridica_servico',
+                'data_base.required' => 'O campo data_base é obrigatório',
+                'data_base.date_format' => 'O campo data_base deve ser uma data no formato Y-m-d',
             ]);
             $data_base = \DateTime::createFromFormat('Y-m-d', $request->get('data_base'));
             return $this->agendamento_service->gerarAgendaServicoMensal($data_base, $request->get('pessoa_juridica_servico_id'));
