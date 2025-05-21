@@ -76,6 +76,10 @@ class AgendamentoRepository
     public function gerarAgendaServicoMensal(\DateTime $data_base, int $pessoa_juridica_servico_id)
     {
         $data_inicial = clone $data_base->modify('first day of this month');
+        $data_hoje = new \DateTime();
+        if ($data_hoje->format('Y-m-d') > $data_inicial->format('Y-m-d')) {
+            $data_inicial = $data_hoje;
+        }
         $data_final = $data_base->modify('last day of this month');
         $data_inicial_formatada =  $data_inicial->format('Y-m-d');
         $data_final_formatada =  $data_final->format('Y-m-d');
