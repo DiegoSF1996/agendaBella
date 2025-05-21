@@ -4,19 +4,19 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
-use App\Models\Agendamento--table=Agendamento;
+use App\Models\ServicoHorario;
 
-class Agendamento--table=AgendamentoRepository
+class ServicoHorarioRepository
 {
 
-    protected $agendamento--table=_agendamento;
-    public function __construct(Agendamento--table=Agendamento $agendamento--table=_agendamento){
-        $this->agendamento--table=_agendamento = $agendamento--table=_agendamento;
+    protected $servico_horario;
+    public function __construct(ServicoHorario $servico_horario){
+        $this->servico_horario = $servico_horario;
     }
 
     public function index (array $filtros = [], $limit = 0, $per_page = 0)
     {
-        $query = $this->agendamento--table=_agendamento;
+        $query = $this->servico_horario;
         if (!empty($filtros)) {
             $query = $query->where($filtros);
         }
@@ -32,7 +32,7 @@ class Agendamento--table=AgendamentoRepository
     {
         DB::beginTransaction();
         try {
-            $data = $this->agendamento--table=_agendamento->create($dataForm);
+            $data = $this->servico_horario->create($dataForm);
             DB::commit();
            return $data;
         } catch (\Exception $e) {
@@ -43,27 +43,27 @@ class Agendamento--table=AgendamentoRepository
 
     public function show($id)
     {
-        return $this->agendamento--table=_agendamento->find($id);
+        return $this->servico_horario->find($id);
     }
 
-    public function update(array $dataForm, Agendamento--table=Agendamento $agendamento--table=_agendamento)
+    public function update(array $dataForm, ServicoHorario $servico_horario)
     {
         DB::beginTransaction();
         try {
-            $agendamento--table=_agendamento->update($dataForm);
+            $servico_horario->update($dataForm);
             DB::commit();
-            return $agendamento--table=_agendamento->refresh();
+            return $servico_horario->refresh();
         } catch (\Exception $e) {
             DB::rollback();
             throw new \Exception($e->getMessage());
         }
     }
 
-    public function destroy(Agendamento--table=Agendamento $agendamento--table=_agendamento)
+    public function destroy(ServicoHorario $servico_horario)
     {
         DB::beginTransaction();
         try {
-            $agendamento--table=_agendamento->delete();
+            $servico_horario->delete();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();

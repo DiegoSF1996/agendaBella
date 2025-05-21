@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class StatusAgendamento extends Model
+class ServicoHorario extends Model
 {
-    use SoftDeletes, HasFactory;
-    protected $table = 'status_agendamento';
+    use  HasFactory;
+    protected $table = 'servico_horario';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    protected $fillable = ["descricao"];
+    protected $fillable = ["pessoa_juridica_servico_id", "dia_semana", "horario_inicio", "horario_fim", "tempo_medio"];
 }
