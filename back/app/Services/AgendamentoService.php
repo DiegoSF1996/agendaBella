@@ -53,5 +53,18 @@ class AgendamentoService
     {
         return $this->agendamento_repository->gerarAgendaServicoMensal($data_base, $pessoa_juridica_servico_id);
     }
+    public function desativarAgendamento(\DateTime $data_hora_inicio, \DateTime $data_hora_fim, int $servico_horario_id )
+    {
+        $this->agendamento_repository->desativarAgendamento($data_hora_inicio, $data_hora_fim, $servico_horario_id );
+    }
+    public function agendarPessoaFisica(int $pessoa_fisica_id, int $agendamento_id)
+    {
+        return $this->agendamento_repository->agendarPessoaFisica($pessoa_fisica_id, $agendamento_id);
+    }
+
+    public function obterVagasDisponiveis(array $filtros)
+    {
+        return $this->agendamento_repository->obterVagasDisponiveis($filtros);
+    }
 
 }

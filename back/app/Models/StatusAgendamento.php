@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class StatusAgendamento extends Model
 {
-    use SoftDeletes, HasFactory;
+    use  HasFactory;
     protected $table = 'status_agendamento';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    protected $fillable = ["descricao"];
+    protected $fillable = ["descricao", "codigo"];
 }

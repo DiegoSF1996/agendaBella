@@ -20,6 +20,9 @@ Route::apiResource('pessoa-juridicas', App\Http\Controllers\PessoaJuridicaContro
 
 Route::apiResource('status-agendamentos', App\Http\Controllers\StatusAgendamentoController::class)->middleware(['check.auth'])->parameters(['status-agendamentos' => 'id']);
 
+Route::get('agendamentos/obter-vagas-disponiveis', [App\Http\Controllers\AgendamentoController::class, 'obterVagasDisponiveis'])->middleware(['check.auth']);
+Route::put('agendamentos/{agendamento_id}/agendar-pessoa-fisica', [App\Http\Controllers\AgendamentoController::class, 'agendarPessoaFisica'])->middleware(['check.auth']);
+Route::post('agendamentos/desativar-agendamento', [App\Http\Controllers\AgendamentoController::class, 'desativarAgendamento'])->middleware(['check.auth']);
 Route::post('agendamentos/gerar-agenda-servico-mensal', [App\Http\Controllers\AgendamentoController::class, 'gerarAgendaServicoMensal'])->middleware(['check.auth']);
 
 Route::apiResource('agendamentos', App\Http\Controllers\AgendamentoController::class)->middleware(['check.auth'])->parameters(['agendamentos' => 'id']);
@@ -29,7 +32,7 @@ Route::apiResource('avaliacao-agendamentos', App\Http\Controllers\AvaliacaoAgend
 Route::apiResource('pessoa-juridica-servicos', App\Http\Controllers\PessoaJuridicaServicoController::class)->middleware(['check.auth'])->parameters(['pessoa-juridica-servicos' => 'id']);
 
 
- Route::apiResource('status-agendamentos',App\Http\Controllers\StatusAgendamentoController::class)->middleware(['check.auth'])->parameters(['status-agendamentos' => 'id']);
+Route::apiResource('status-agendamentos', App\Http\Controllers\StatusAgendamentoController::class)->middleware(['check.auth'])->parameters(['status-agendamentos' => 'id']);
 
- 
- Route::apiResource('servico-horarios',App\Http\Controllers\ServicoHorarioController::class)->middleware(['check.auth'])->parameters(['servico-horarios' => 'id']);
+
+Route::apiResource('servico-horarios', App\Http\Controllers\ServicoHorarioController::class)->middleware(['check.auth'])->parameters(['servico-horarios' => 'id']);
