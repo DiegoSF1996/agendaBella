@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class PessoaJuridica extends Model
 {
     use HasFactory;
-    protected $table = 'pessoa_juridica_servico';
+    protected $table = 'pessoa_juridica';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
-    protected $fillable = ["pessoa_juridica_id","servico_id"];
+    protected $fillable = ["nome_fantasia","cnpj","telefone","user_id"];
 }
