@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../context/AuthContext';
+import Rotas from '@/context/Axios';
+
 
 export default function RegisterScreen() {
     const [isPJ, setIsPJ] = useState(false);
@@ -80,7 +82,7 @@ export default function RegisterScreen() {
         }
 
         if (!email || !validateEmail(email)) {
-            newErrors.email = 'Erro E-mail inválido';
+           // newErrors.email = 'Erro E-mail inválido';
         }
 
         if (!senha || senha.length < 6) {
@@ -109,11 +111,19 @@ export default function RegisterScreen() {
         }
 
         setErrors({}); // limpa erros
+        let userData = {
+            'email': email,
+            'password': senha,
+        };
+        Rotas.createUser(userData).then((response) => {
+            if (response.status === 201) {
+                alert('Usuário cadastrado com sucesso!');
+                router.replace('/login');
 
-        // Tudo válido
-        login(nomeUsuario);
-        console.log('Sucesso Cadastro realizado com sucesso!');
-        router.replace('/login');
+            } else {
+                alert('Erro ao cadastrar usuário');
+            }
+        });
     };
 
 

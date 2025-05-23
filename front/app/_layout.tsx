@@ -30,6 +30,7 @@ function DrawerContent() {
 
   // Esconde o splash quando a tela estiver pronta
   const onLayoutRootView = useCallback(async () => {
+
     if (appIsReady) {
       await SplashScreen.hideAsync();
     }
@@ -38,7 +39,6 @@ function DrawerContent() {
   if (!appIsReady) {
     return null; // ou um loading temporário
   }
-
   return (
     <GestureHandlerRootView style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <Drawer screenOptions={{

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import { useAuth } from '../../context/AuthContext';
+import Rotas from '../../context/Axios';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -14,8 +15,18 @@ export default function LoginScreen() {
       Alert.alert('Erro', 'Preencha todos os campos');
       return;
     }
-
-    login(email,'pj');
+    Rotas.login({
+      'email': email,
+      'password': senha
+    }).then((res) => {
+      console.log(res);
+      login(email, 'pj', res.data.data.token);
+      router.replace('/pj/home');
+    }).catch((err) => {
+      console.log(err);
+      Alert.alert('Erro', 'Erro ao fazer login');
+    });
+    //login(email,'pj');
     router.replace('/pj/home');
   };
 
@@ -42,8 +53,8 @@ export default function LoginScreen() {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
-      
-      <Text style={{ textAlign: 'center' }} >Ainda não tem uma conta? <Link style={{color: '#ff65b5'}} href="/registrar">Criar Conta</Link> </Text>
+
+      <Text style={{ textAlign: 'center' }} >Ainda não tem uma conta? <Link style={{ color: '#ff65b5' }} href="/registrar">Criar Conta</Link> </Text>
     </View>
   );
 }
