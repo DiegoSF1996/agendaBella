@@ -10,7 +10,8 @@ Route::get('/user', function (Request $request) {
 
 Route::post('users/logout', [App\Http\Controllers\UserController::class,'logout'])->middleware(['auth:sanctum']);
 Route::post('users/login', [App\Http\Controllers\UserController::class,'login']);
-Route::apiResource('users', App\Http\Controllers\UserController::class)->middleware(['auth:sanctum'])->parameters(['users' => 'id']);
+Route::post('users', [App\Http\Controllers\UserController::class,'store']);
+//Route::apiResource('users', App\Http\Controllers\UserController::class)->middleware(['auth:sanctum'])->parameters(['users' => 'id']);
 
 Route::apiResource('servicos', App\Http\Controllers\ServicoController::class)->middleware(['auth:sanctum'])->parameters(['servicos' => 'id']);
 
